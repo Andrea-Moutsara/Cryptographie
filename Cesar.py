@@ -30,6 +30,7 @@ texte_chiffre = chiffrer_cesar(texte_clair, decalage)
 print("\nTexte chiffré :", texte_chiffre)
 
 # Saisie du texte chiffré pour déchiffrement
+# \nEntrez un texte chiffré à déchiffrer ==> Affiche le texte noté après le (\n) avant la saisie demandé
 texte_a_dechiffrer = input("\nEntrez un texte chiffré à déchiffrer : ")
 texte_dechiffre = dechiffrer_cesar(texte_a_dechiffrer, decalage)
 print("Texte déchiffré :", texte_dechiffre)
