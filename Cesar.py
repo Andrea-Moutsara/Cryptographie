@@ -1,50 +1,35 @@
-# Fonction de chiffrement Vigenère
-def chiffrer_vigenere(texte_clair, cle):
+# Fonction de chiffrement
+def chiffrer_cesar(texte_clair, decalage):
     resultat = ""
-    cle = cle.lower()
-    index_cle = 0
-
     for char in texte_clair:
         if char.isalpha():
             base = ord('A') if char.isupper() else ord('a')
-            decalage = ord(cle[index_cle % len(cle)]) - ord('a')
-            nouveau_char = chr((ord(char) - base + decalage) % 26 + base)
-            resultat += nouveau_char
-            index_cle += 1
+            resultat += chr((ord(char) - base + decalage) % 26 + base)
         else:
             resultat += char
     return resultat
 
-# Fonction de déchiffrement Vigenère
-def dechiffrer_vigenere(texte_chiffre, cle):
-    resultat = ""
-    cle = cle.lower()
-    index_cle = 0
+# Fonction de déchiffrement
+def dechiffrer_cesar(texte_chiffre, decalage):
+    return chiffrer_cesar(texte_chiffre, -decalage)
 
-    for char in texte_chiffre:
-        if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
-            decalage = ord(cle[index_cle % len(cle)]) - ord('a')
-            nouveau_char = chr((ord(char) - base - decalage) % 26 + base)
-            resultat += nouveau_char
-            index_cle += 1
-        else:
-            resultat += char
-    return resultat
-
-# ----------------------------
+# ---------------------------
 # Partie interactive
 
-# Chiffrement
+# Saisie du texte clair et du décalage
 texte_clair = input("Entrez le texte à chiffrer : ")
-cle_chiffrement = input("Entrez la clé de chiffrement : ")
+while True:
+    try:
+        decalage = int(input("Entrez le décalage (nombre entier) : "))
+        break
+    except ValueError:
+        print("Erreur : veuillez entrer un nombre entier.")
 
-texte_chiffre = chiffrer_vigenere(texte_clair, cle_chiffrement)
+# Chiffrement
+texte_chiffre = chiffrer_cesar(texte_clair, decalage)
 print("\nTexte chiffré :", texte_chiffre)
 
-# Déchiffrement
-texte_chiffre_a_dechiffrer = input("\nEntrez le texte chiffré à déchiffrer : ")
-cle_dechiffrement = input("Entrez la clé de déchiffrement : ")
-
-texte_dechiffre = dechiffrer_vigenere(texte_chiffre_a_dechiffrer, cle_dechiffrement)
+# Saisie du texte chiffré pour déchiffrement
+texte_a_dechiffrer = input("\nEntrez un texte chiffré à déchiffrer : ")
+texte_dechiffre = dechiffrer_cesar(texte_a_dechiffrer, decalage)
 print("Texte déchiffré :", texte_dechiffre)
