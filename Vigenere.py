@@ -39,6 +39,7 @@ def dechiffrer_vigenere(texte_chiffre, cle):
 texte_clair = input("Entrez le texte à chiffrer : ")
 cle_chiffrement = input("Entrez la clé de chiffrement : ")
 
+# \nEntrez un texte chiffré à déchiffrer ==> Affiche le texte noté après le (\n) avant la saisie demandé
 texte_chiffre = chiffrer_vigenere(texte_clair, cle_chiffrement)
 print("\nTexte chiffré :", texte_chiffre)
 
